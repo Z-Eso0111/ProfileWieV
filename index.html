@@ -7,26 +7,36 @@
 </head>
 <body>
     <div id="centeredText"></div>
+    <div id="infoText"></div>
+    <button id="resetButton">Reset</button>
     
     <script>
-        // Sayıyı saklamak için localStorage kullanıyoruz
-        // Sayfa yüklendiğinde saklanan sayıyı kontrol ediyoruz
-        // Eğer sayı yoksa veya 0 ise 1'den başlıyoruz
         let sayi = localStorage.getItem("sayi");
         if (!sayi || sayi === "0") {
             sayi = 1;
         }
 
-        // Sayıyı göstermek için sayfa yüklendiğinde güncellenen bir fonksiyon
         function guncelleSayi() {
             document.getElementById("centeredText").innerText = sayi;
+            document.getElementById("infoText").innerText = "Siteye " + sayi + " Kişi Göz Attı";
         }
 
-        // Her sayfa yenilendiğinde sayıyı bir artırıyoruz ve kaydediyoruz
         window.onload = function() {
             sayi++;
             localStorage.setItem("sayi", sayi);
             guncelleSayi();
+        };
+
+        document.getElementById("resetButton").onclick = function() {
+            let sifre = prompt("Lütfen resetlemek için şifreyi girin:");
+            if (sifre === "002254") {
+                localStorage.setItem("sayi", 0);
+                sayi = 0;
+                guncelleSayi();
+                alert("Sayacı sıfırladınız!");
+            } else {
+                alert("Hatalı şifre, sıfırlama başarısız!");
+            }
         };
     </script>
 </body>
