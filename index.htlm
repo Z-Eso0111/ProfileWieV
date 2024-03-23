@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil.View</title>
+</head>
+<body>
+    <div id="centeredText"></div>
+    
+    <script>
+        // Sayıyı saklamak için localStorage kullanıyoruz
+        // Sayfa yüklendiğinde saklanan sayıyı kontrol ediyoruz
+        // Eğer sayı yoksa veya 0 ise 1'den başlıyoruz
+        let sayi = localStorage.getItem("sayi");
+        if (!sayi || sayi === "0") {
+            sayi = 1;
+        }
+
+        // Sayıyı göstermek için sayfa yüklendiğinde güncellenen bir fonksiyon
+        function guncelleSayi() {
+            document.getElementById("centeredText").innerText = sayi;
+        }
+
+        // Her sayfa yenilendiğinde sayıyı bir artırıyoruz ve kaydediyoruz
+        window.onload = function() {
+            sayi++;
+            localStorage.setItem("sayi", sayi);
+            guncelleSayi();
+        };
+    </script>
+</body>
+</html>
